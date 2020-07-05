@@ -10,11 +10,14 @@ All town NPCs from other mods work by default
 ## Known Issues
 * `(Name) Has Arrived!` Will show an incorrect name
 * Some mods may not work out of box
+* Once a world is loaded with Persistant Names, it cannot be used without Persistant Names.
 
 ## Modding API
 Persistant Names aims to work with other mods!
 
 ### Using Weak References:
+You can use weak references relatively easily.  
+Just make sure to put `weakReferences = KeepNames@0.1` in your build.txt
 #### Blacklist an NPC
 You can prevent Persistant Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
 ```cs
