@@ -1,0 +1,3 @@
+displayName = Persistant Names
+author = Myristica
+version = 0.1
