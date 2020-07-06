@@ -10,8 +10,10 @@ namespace KeepNames {
 			List<int> ids = new List<int>();
 			List<string> names = new List<string>();
 			for(int i = 0; i < KeepNames.names.Count; i++) {
-				ids.Add(KeepNames.names[i].id);
-				names.Add(KeepNames.names[i].givenName);
+				if(!KeepNames.blacklist.Contains(KeepNames.names[i].id)) {
+					ids.Add(KeepNames.names[i].id);
+					names.Add(KeepNames.names[i].givenName);
+				}
             }
 			if (ids.Count != 0)
 				return new TagCompound {
