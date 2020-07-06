@@ -19,7 +19,7 @@ namespace KeepNames {
                 if (i != -1) {
                     npc.GivenName = KeepNames.names[i].givenName;
                 }
-                else if (npc.townNPC && !KeepNames.blacklist.Contains(npc.type)) {
+                else if (npc.townNPC && !KeepNames.blacklist.Contains(npc.type) && npc.GivenName!="") {
                     KeepNames.setName(npc.type, npc.GivenName);
                 }
             }
