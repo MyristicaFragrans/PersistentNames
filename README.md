@@ -11,6 +11,7 @@ All town NPCs from other mods work by default
 * `(Name) Has Arrived!` Will show an incorrect name
 * Some mods may not work out of box
 * Once a world is loaded with Persistant Names, it cannot be used without Persistant Names.
+* Old testing code made it into release that prevents the names database from being loaded
 
 ## Modding API
 Persistant Names aims to work with other mods!
