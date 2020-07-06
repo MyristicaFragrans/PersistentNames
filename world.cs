@@ -26,7 +26,7 @@ namespace KeepNames {
             if (ids.Count != names.Count) throw new System.Exception("Persistant Names: Mismatch between ids and names in NBT data");
 			KeepNames.names = new List<name> { };
 			for(var i = 0; i < ids.Count; i++) {
-				//KeepNames.names.Add(new name(ids[i], names[i]));
+				KeepNames.names.Add(new name(ids[i], names[i]));
             }
 		}
 	}
