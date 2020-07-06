@@ -4,3 +4,4 @@ version = 0.1.0.1
 homepage = https://github.com/RonanFinley/PersistantNames
 includeSource = true
 buildIgnore = build.txt, .gitattributes, .gitignore, .git/, .vs/, .idea/, bin/, obj/, Thumbs.db, *.csproj, .cs, .sln, README.md, LICENSE
+side = Server
