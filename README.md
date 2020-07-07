@@ -1,5 +1,5 @@
-# Persistant Names
-Persistant Names will make it so your NPCs will always keep the same names- even if they die and respawn!
+# Persistent Names
+Persistent Names will make it so your NPCs will always keep the same names- even if they die and respawn!
 
 ## Your Town will remain!
 By the end of a normal game, your town has been completely replaced many times. Instead, you can have your NPCs just respawn with the same names.
@@ -11,11 +11,11 @@ All town NPCs from other mods work by default
 * `(Name) Has Arrived!` Will show an incorrect name
 * Some mods may not work out of box
 # Modding API
-Persistant Names aims to work with other mods!
+Persistent Names aims to work with other mods!
 ## Using Mod.Call
 This is probably the easiest. Just make sure ```Mod KeepNames = ModLoader.GetMod("KeepNames");``` is somewhere in your context.
 ### Blacklist an NPC
-You can prevent Persistant Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
+You can prevent Persistent Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
 ```cs
 if (KeepNames != null) {
   KeepNames.Call("blacklistNPC", ModContent.NPCType<MyModdedNPC>());
@@ -40,7 +40,7 @@ if (KeepNames != null) {
 You can use weak references relatively easily.  
 Just make sure to put `weakReferences = KeepNames@0.1` in your build.txt
 ### Blacklist an NPC
-You can prevent Persistant Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
+You can prevent Persistent Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
 ```cs
 if (ModLoader.GetMod("KeepNames") != null) {
   KeepNames.KeepNames.blacklistNPC(ModContent.NPCType<MyModdedNPC>());
