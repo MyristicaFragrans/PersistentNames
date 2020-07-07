@@ -1,4 +1,6 @@
+![Persistant Names](icon.png)
 # Persistant Names
+
 Persistant Names will make it so your NPCs will always keep the same names- even if they die and respawn!
 
 ## Your Town will remain!
