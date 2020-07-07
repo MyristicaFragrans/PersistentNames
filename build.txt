@@ -1,6 +1,6 @@
 displayName = Persistant Names
 author = Dr. Yamok
-version = 0.1.0.1
+version = 0.2.0.0
 homepage = https://github.com/RonanFinley/PersistantNames
 includeSource = true
 buildIgnore = build.txt, .gitattributes, .gitignore, .git/, .vs/, .idea/, bin/, obj/, Thumbs.db, *.csproj, .cs, .sln, README.md, LICENSE
