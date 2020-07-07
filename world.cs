@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using static Terraria.ModLoader.ModContent;
 
 namespace KeepNames {
     class world : ModWorld {
@@ -10,7 +11,7 @@ namespace KeepNames {
 			List<int> ids = new List<int>();
 			List<string> names = new List<string>();
 			for(int i = 0; i < KeepNames.names.Count; i++) {
-				if(!KeepNames.blacklist.Contains(KeepNames.names[i].id)) {
+				if(!KeepNames.blacklist.Contains(KeepNames.names[i].id) && GetInstance<nameConfigServer>().manualBlackList.FindIndex(b => b.Type == KeepNames.names[i].id) == -1) {
 					ids.Add(KeepNames.names[i].id);
 					names.Add(KeepNames.names[i].givenName);
 				}
