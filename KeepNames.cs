@@ -2,6 +2,7 @@ using Steamworks;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace KeepNames {
 	public class KeepNames : Mod {
@@ -38,9 +39,9 @@ namespace KeepNames {
 		/// </summary>
 		/// <param name="id">The NPCID of the NPC</param>
 		public static string getSavedName(int id) {
-			if (blacklist.Contains(id)) return null;
+			if (blacklist.Contains(id) || GetInstance<nameConfigServer>().manualBlackList.FindIndex(b => b.Type == id) == -1) return null;
 			int i = names.FindIndex(obj => obj.id == id);
-			if (i == -1) return null;
+			if (i == -1 || names[i].givenName == "") return null;
 			else {
 				return names[i].givenName;
             }
