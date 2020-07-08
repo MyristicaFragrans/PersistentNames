@@ -7,42 +7,25 @@ using IL.Terraria;
 using MonoMod.Cil;
 using static Mono.Cecil.Cil.OpCodes;
 using Mono.Cecil.Cil;
+using log4net.Repository.Hierarchy;
+using log4net.Core;
 
 namespace KeepNames {
 	public class KeepNames : Mod {
 		internal static List<int> blacklist = new List<int> { };
 		internal static List<name> names = new List<name> { };
-		public static string debugBlacklist() {
-            return string.Join(", ", GetInstance<nameConfigServer>().manualBlackList);
-		}
 		internal static bool _patchedGame;
 		public static bool patchedGame { get; }
-		/* (20,4)-(20,63) main.cs */
-	/* 0x00000000 02           */ //IL_0000: ldarg.0
-	/* 0x00000001 28????????   */ //IL_0001: call      string [KeepNames]KeepNames.KeepNames::getSavedName(int32)
-	/* 0x00000006 0A           */ //IL_0006: stloc.0
-	/* (21,4)-(21,23) main.cs */
-	/* 0x00000007 06           */ //IL_0007: ldloc.0
-	/* 0x00000008 2C02         */ //IL_0008: brfalse.s IL_000C
-
-	/* (21,24)-(21,39) main.cs */
-	/* 0x0000000A 06           */ //IL_000A: ldloc.0
-	/* 0x0000000B 2A           */ //IL_000B: ret
 
         public override void Load() {
-            base.Load();
             NPC.getNewNPCName += NPC_getNewNPCName;
         }
 
         private void NPC_getNewNPCName(ILContext il) {
 			ILCursor c = new ILCursor(il);
-			/*if (!c.TryGotoNext(i => i.MatchLdcI4(178))) { // We look for the beginning of the function
-				_patchedGame = false; // Fall back to PreAI() changing
-				return; // Patch unable to be applied
-			}*/
+			
 			try {
 				System.Reflection.MethodInfo method = typeof(KeepNames).GetMethod(nameof(getSavedName));
-				//System.Reflection.MethodBase inject = method.MakeGenericMethod(typeof(int));
 
 				ILLabel label = il.DefineLabel();
 				c.Emit(Ldarg_0);
@@ -69,8 +52,8 @@ namespace KeepNames {
 			if (!blacklist.Contains(id)) blacklist.Add(id);
 			int i = names.FindIndex(obj => obj.id == id);
 			if(i!=-1) { names.RemoveAt(i); }
-
-        }
+			
+		}
 		/// <summary>
 		/// Manually set an entities name for later use.
 		/// Does not update current NPCs
@@ -135,7 +118,7 @@ namespace KeepNames {
 					case "getSavedName": {
 							int? id = args[1] as int?;
 							if (id == null) { Logger.Error("Second argument of getSavedName must be an int."); return false; }
-							getSavedName((int)id);
+                            _ = KeepNames.getSavedName((int)id);
 							return true;
 						}
 					default:
