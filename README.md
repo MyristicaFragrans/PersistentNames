@@ -1,5 +1,7 @@
-# Persistent Names
-Persistent Names will make it so your NPCs will always keep the same names- even if they die and respawn!
+![Persistant Names](icon.png)
+# Persistant Names
+
+Persistant Names will make it so your NPCs will always keep the same names- even if they die and respawn!
 
 ## Your Town will remain!
 By the end of a normal game, your town has been completely replaced many times. Instead, you can have your NPCs just respawn with the same names.
