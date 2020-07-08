@@ -92,7 +92,7 @@ namespace KeepNames {
 		/// </summary>
 		/// <param name="id">The NPCID of the NPC</param>
 		public static string getSavedName(int id) {
-			if (blacklist.Contains(id) || GetInstance<nameConfigServer>().manualBlackList.FindIndex(b => b.Type == id) == -1) return null;
+			if (blacklist.Contains(id) || GetInstance<nameConfigServer>().manualBlackList.FindIndex(b => b.Type == id) != -1) return null;
 			int i = names.FindIndex(obj => obj.id == id);
 			if (i == -1 || names[i].givenName == "") return null;
 			else {
