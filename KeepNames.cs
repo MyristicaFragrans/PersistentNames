@@ -49,6 +49,8 @@ namespace KeepNames {
         /// </summary>
         /// <param name="id">The NPCID of the NPC to blacklist</param>
         public static void blacklistNPC(int id) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return;
 			if (!blacklist.Contains(id)) blacklist.Add(id);
 			int i = names.FindIndex(obj => obj.id == id);
 			if(i!=-1) { names.RemoveAt(i); }
@@ -61,6 +63,8 @@ namespace KeepNames {
 		/// <param name="id">The NPCID of the NPC</param>
 		/// <param name="newName">The new name to set</param>
 		public static void setName(int id, string newName) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return;
 			if (blacklist.Contains(id)) return;
 			int i = names.FindIndex(obj => obj.id == id);
 			if(i==-1) {
@@ -75,6 +79,8 @@ namespace KeepNames {
 		/// </summary>
 		/// <param name="id">The NPCID of the NPC</param>
 		public static string getSavedName(int id) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return null;
 			if (blacklist.Contains(id) || GetInstance<nameConfigServer>().manualBlackList.FindIndex(b => b.Type == id) != -1) return null;
 			int i = names.FindIndex(obj => obj.id == id);
 			if (i == -1 || names[i].givenName == "") return null;
