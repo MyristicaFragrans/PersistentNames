@@ -7,8 +7,6 @@ using IL.Terraria;
 using MonoMod.Cil;
 using static Mono.Cecil.Cil.OpCodes;
 using Mono.Cecil.Cil;
-using log4net.Repository.Hierarchy;
-using log4net.Core;
 using Terraria.ID;
 
 namespace KeepNames {
