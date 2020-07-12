@@ -1,4 +1,5 @@
-![Persistant Names](icon.png)
+<img src="icon.png" alt="Logo"
+	title="Logo" width="150" style="image-rendering: pixelated;"/>
 # Persistant Names
 
 Persistant Names will make it so your NPCs will always keep the same names- even if they die and respawn!
