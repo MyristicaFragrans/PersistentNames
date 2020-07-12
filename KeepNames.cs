@@ -3,21 +3,59 @@ using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using IL.Terraria;
+using MonoMod.Cil;
+using static Mono.Cecil.Cil.OpCodes;
+using Mono.Cecil.Cil;
+using Terraria.ID;
 
 namespace KeepNames {
 	public class KeepNames : Mod {
 		internal static List<int> blacklist = new List<int> { };
+		internal static List<int> considerAsTownNPCs = new List<int> { NPCID.SkeletonMerchant };
 		internal static List<name> names = new List<name> { };
-		/// <summary>
-		/// Prevents an NPC from being given a persistant name
-		/// </summary>
-		/// <param name="id">The NPCID of the NPC to blacklist</param>
-		public static void blacklistNPC(int id) {
+		internal static bool _patchedGame;
+		public static bool patchedGame { get { return _patchedGame; } }
+
+        public override void Load() {
+            NPC.getNewNPCName += NPC_getNewNPCName;
+        }
+
+        private void NPC_getNewNPCName(ILContext il) {
+			ILCursor c = new ILCursor(il);
+			
+			try {
+				System.Reflection.MethodInfo method = typeof(KeepNames).GetMethod(nameof(getSavedName));
+
+				ILLabel label = il.DefineLabel();
+				c.Emit(Ldarg_0);
+				c.Emit(OpCodes.Call, method);
+				c.Emit(Stloc_0);
+				c.Emit(Ldloc_0);
+				c.Emit(Brfalse_S, label);
+				c.Emit(Ldloc_0);
+				c.Emit(Ret);
+
+				c.MarkLabel(label);
+				_patchedGame = true;
+			} catch(System.Exception e) {
+				Logger.Error($"{e.Message} - {e.StackTrace}");
+				_patchedGame = false;
+            }
+		}
+
+        /// <summary>
+        /// Prevents an NPC from being given a persistant name
+        /// </summary>
+        /// <param name="id">The NPCID of the NPC to blacklist</param>
+        public static void blacklistNPC(int id) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return;
 			if (!blacklist.Contains(id)) blacklist.Add(id);
 			int i = names.FindIndex(obj => obj.id == id);
 			if(i!=-1) { names.RemoveAt(i); }
-
-        }
+			
+		}
 		/// <summary>
 		/// Manually set an entities name for later use.
 		/// Does not update current NPCs
@@ -25,6 +63,8 @@ namespace KeepNames {
 		/// <param name="id">The NPCID of the NPC</param>
 		/// <param name="newName">The new name to set</param>
 		public static void setName(int id, string newName) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return;
 			if (blacklist.Contains(id)) return;
 			int i = names.FindIndex(obj => obj.id == id);
 			if(i==-1) {
@@ -39,6 +79,8 @@ namespace KeepNames {
 		/// </summary>
 		/// <param name="id">The NPCID of the NPC</param>
 		public static string getSavedName(int id) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return null;
 			if (blacklist.Contains(id) || GetInstance<nameConfigServer>().manualBlackList.FindIndex(b => b.Type == id) != -1) return null;
 			int i = names.FindIndex(obj => obj.id == id);
 			if (i == -1 || names[i].givenName == "") return null;
@@ -82,7 +124,7 @@ namespace KeepNames {
 					case "getSavedName": {
 							int? id = args[1] as int?;
 							if (id == null) { Logger.Error("Second argument of getSavedName must be an int."); return false; }
-							getSavedName((int)id);
+                            _ = KeepNames.getSavedName((int)id);
 							return true;
 						}
 					default:

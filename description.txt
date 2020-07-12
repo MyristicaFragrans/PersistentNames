@@ -1,12 +1,11 @@
 Persistent Names will make it so your NPCs will always keep the same names- even if they die and respawn!
 See documentation on exempting your mod on the homepage. Submit bugs on Github Issues.
 
-Verson 0.2.0.1
-- Fixed all instances of misspelled "Persistent"
+Discord: https://discord.gg/ET9mGwH
+Github: https://github.com/RonanFinley/PersistentNames
 
-Version 0.2.0.0 Change Log
-- Old Testing Code Removed
-- Now reapplies blacklist when loadign and saving files
-- Added Mod.Call Support
-- Added Manually Disabling NPCs (Inside Mod Configuration)
-- Fixed bug where empty strings would be saved. These will be fixed automatically upon next load.
+Version 0.3.0.0
+- Names will now appear in Arrival Messages
+  - If there is an error, Persistent Names will fall back to the origional method
+- Added a Discord Server (Above)
+- Fixed potential Multiplayer Problems
