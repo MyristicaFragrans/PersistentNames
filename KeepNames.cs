@@ -9,13 +9,15 @@ using static Mono.Cecil.Cil.OpCodes;
 using Mono.Cecil.Cil;
 using log4net.Repository.Hierarchy;
 using log4net.Core;
+using Terraria.ID;
 
 namespace KeepNames {
 	public class KeepNames : Mod {
 		internal static List<int> blacklist = new List<int> { };
+		internal static List<int> considerAsTownNPCs = new List<int> { NPCID.SkeletonMerchant };
 		internal static List<name> names = new List<name> { };
 		internal static bool _patchedGame;
-		public static bool patchedGame { get; }
+		public static bool patchedGame { get { return _patchedGame; } }
 
         public override void Load() {
             NPC.getNewNPCName += NPC_getNewNPCName;
