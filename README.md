@@ -11,7 +11,6 @@ By the end of a normal game, your town has been completely replaced many times. 
 All town NPCs from other mods work by default
 
 ## Known Issues
-* `(Name) Has Arrived!` Will show an incorrect name
 * Some mods may not work out of box
 # Modding API
 Persistent Names aims to work with other mods!
