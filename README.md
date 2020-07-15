@@ -49,7 +49,7 @@ if (ModLoader.GetMod("KeepNames") != null) {
 ---
 ## Using Weak References:
 You can use weak references relatively easily.  
-Just make sure to put `weakReferences = KeepNames@0.1` in your build.txt
+Just make sure to put `weakReferences = KeepNames@0.3` in your build.txt
 ### Blacklist an NPC
 You can prevent Persistent Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
 ```cs
