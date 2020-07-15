@@ -14,7 +14,6 @@ All town NPCs from other mods work by default
 * Some mods may not work out of box
 # Modding API
 Persistent Names aims to work with other mods!
-Persistent Names aims to work with other mods!  
 Have questions or need help? Talk to me on [this mod's Discord](https://discord.gg/ET9mGwH)!
 ## Using Mod.Call
 This is probably the easiest. Just make sure ```Mod KeepNames = ModLoader.GetMod("KeepNames");``` is somewhere in your context.
