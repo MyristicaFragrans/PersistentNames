@@ -57,6 +57,16 @@ namespace KeepNames {
 			
 		}
 		/// <summary>
+		/// Persistent Names selects NPCs that have <c>bool townNPC = true</c>. This allows you to override this functionality for a specific NPC. NPCs on the blacklist still won't be considered.
+		/// </summary>
+		/// <param name="id">The NPCID of the NPC to use</param>
+		public static void useNPC(int id) {
+			//exit if we are not either the host or in singleplayer
+			if (Terraria.Main.netMode == Terraria.ID.NetmodeID.MultiplayerClient || Terraria.Main.dedServ) return;
+			if (!considerAsTownNPCs.Contains(id)) considerAsTownNPCs.Add(id);
+
+		}
+		/// <summary>
 		/// Manually set an entities name for later use.
 		/// Does not update current NPCs
 		/// </summary>
@@ -125,6 +135,12 @@ namespace KeepNames {
 							int? id = args[1] as int?;
 							if (id == null) { Logger.Error("Second argument of getSavedName must be an int."); return false; }
                             _ = KeepNames.getSavedName((int)id);
+							return true;
+						}
+					case "useNPC": {
+							int? id = args[1] as int?;
+							if (id == null) { Logger.Error("Second argument of useNPC must be an int."); return false; }
+							useNPC((int)id);
 							return true;
 						}
 					default:

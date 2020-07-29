@@ -11,10 +11,10 @@ By the end of a normal game, your town has been completely replaced many times. 
 All town NPCs from other mods work by default
 
 ## Known Issues
-* `(Name) Has Arrived!` Will show an incorrect name
 * Some mods may not work out of box
 # Modding API
 Persistent Names aims to work with other mods!
+Have questions or need help? Talk to me on [this mod's Discord](https://discord.gg/ET9mGwH)!
 ## Using Mod.Call
 This is probably the easiest. Just make sure ```Mod KeepNames = ModLoader.GetMod("KeepNames");``` is somewhere in your context.
 ### Blacklist an NPC
@@ -38,10 +38,17 @@ if (KeepNames != null) {
   KeepNames.Call("getSavedName", ModContent.NPCType<MyModdedNPC>());
 }
 ```
+### Use non-TownNPC
+Persistent Names selects only NPCs that have `bool townNPC = true;`. You can tell Persistent names to consider an NPC despite this.
+```cs
+if (ModLoader.GetMod("KeepNames") != null) {
+  KeepNames.Call("useNPC", ModContent.NPCType<MyModdedNPC>());
+}
+```
 ---
 ## Using Weak References:
 You can use weak references relatively easily.  
-Just make sure to put `weakReferences = KeepNames@0.1` in your build.txt
+Just make sure to put `weakReferences = KeepNames@0.3` in your build.txt
 ### Blacklist an NPC
 You can prevent Persistent Names from automatically assigning your name to all new NPCs. This does not work dynamically and should be set at load.
 ```cs
@@ -61,5 +68,12 @@ Get a name that has been saved, Returns the saved name or `null` otherwise
 ```cs
 if (ModLoader.GetMod("KeepNames") != null) {
   KeepNames.KeepNames.getSavedName(ModContent.NPCType<MyModdedNPC>());
+}
+```
+### Use non-TownNPC
+Persistent Names selects only NPCs that have `bool townNPC = true;`. You can tell Persistent names to consider an NPC despite this.
+```cs
+if (ModLoader.GetMod("KeepNames") != null) {
+  KeepNames.KeepNames.useNPC(ModContent.NPCType<MyModdedNPC>());
 }
 ```
