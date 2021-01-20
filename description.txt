@@ -1,13 +1,13 @@
 Persistent Names will make it so your NPCs will always keep the same names- even if they die and respawn!
 See documentation on exempting your mod on the homepage. Submit bugs on Github Issues.
 
-Thank you for 700+ downloads!
+Thank you for 2000+ downloads!
 
 Discord: https://discord.gg/ET9mGwH
 Github: https://github.com/MyristicaFragrans/PersistentNames
 
-Version 0.3.1.0
-- Added useNPC(int id) and Mod.Call("useNPC", int id) to API
+Version 0.3.1.1
+- Persistent Names is now built for tModLoader v0.11.8
 
 Version 0.3.0.0
 - Names will now appear in Arrival Messages
